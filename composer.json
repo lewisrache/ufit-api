@@ -1,4 +1,6 @@
 {
+    "name": "uFit/API",
+    "description": "backend API for workout application",
     "autoload": {
         "classmap": [
             "src/"
