@@ -3,10 +3,15 @@ namespace App\Storage;
 
 final class Exercise
 {
-    public static function insert(\App\Business\Exercise $exercise): int
+    private static function createDB(): \PDO
     {
         $database = new \PDO('sqlite:/tmp/testdb.db');
         $database->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
+        return $database;
+    }
+    public static function insert(\App\Business\Exercise $exercise): int
+    {
+        $database = self::createDB();
 
         $sql = "INSERT INTO exercises (name) VALUES (:name)";
         $data = [':name' => $exercise->getName()];
@@ -19,8 +24,7 @@ final class Exercise
 
     public static function fetchById(int $id): \App\Business\Exercise
     {
-        $database = new \PDO('sqlite:/tmp/testdb.db');
-        $database->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
+        $database = self::createDB();
 
         $sql = "SELECT name FROM exercises WHERE id = :id";
         $data = [':id' => $id];
