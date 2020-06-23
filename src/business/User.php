@@ -25,4 +25,9 @@ final class User
     {
         return $this->programs;
     }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }

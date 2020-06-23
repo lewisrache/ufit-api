@@ -27,4 +27,11 @@ final class UserTest extends TestCase
         $userPrograms = $user->getPrograms();
         $this->assertEquals($program, $userPrograms[0]);
     }
+
+    public function testGetName(): void
+    {
+        $name = 'newuser';
+        $user = User::fromName($name);
+        $this->assertEquals($name, $user->getName());
+    }
 }
