@@ -4,6 +4,7 @@ namespace App\Tests\Business;
 use PHPUnit\Framework\TestCase;
 use App\Business\Exercise;
 use App\Business\Program;
+use App\Business\User;
 use App\Business\Workout;
 final class ProgramTest extends TestCase
 {
@@ -13,9 +14,10 @@ final class ProgramTest extends TestCase
             Exercise::fromString("exercise1"),
             Exercise::fromString("exercise2")
         ];
+        $user = User::fromName("newuser");
         $this->assertInstanceOf(
             Program::class,
-            Program::create("programname", ...$exercises)
+            Program::create("programname", $user, ...$exercises)
         );
     }
 
@@ -25,7 +27,8 @@ final class ProgramTest extends TestCase
             Exercise::fromString("exercise1"),
             Exercise::fromString("exercise2")
         ];
-        $program = Program::create("programname", ...$expectedExercises);
+        $user = User::fromName("newuser");
+        $program = Program::create("programname", $user, ...$expectedExercises);
         $actualExercises = $program->getExercises();
         $this->assertEquals($expectedExercises, $actualExercises);
     }
@@ -37,7 +40,8 @@ final class ProgramTest extends TestCase
             Exercise::fromString("exercise1"),
             Exercise::fromString("exercise2")
         ];
-        $program = Program::create($expectedName, ...$exercises);
+        $user = User::fromName("newuser");
+        $program = Program::create($expectedName, $user, ...$exercises);
         $this->assertEquals($expectedName, $program->getName());
     }
 /* THESE SHOULD BE REMOVED BECAUSE THEY SHOULD BE WITH WORKOUTS
@@ -83,7 +87,8 @@ final class ProgramTest extends TestCase
             Exercise::fromString("exercise1"),
             Exercise::fromString("exercise2")
         ];
-        $program = Program::create("programname", ...$exercises);
+        $user = User::fromName("newuser");
+        $program = Program::create("programname", $user, ...$exercises);
         $newExercise = Exercise::fromString("newexercise");
         $program->addExercise($newExercise);
         // because WE are passing this in, and WE are determining how the code is written
@@ -101,13 +106,15 @@ final class ProgramTest extends TestCase
             $removedExercise,
             $afterExercise
         ];
-        $program = Program::create("programname", ...$exercises);
+        $user = User::fromName("newuser");
+        $program = Program::create("programname", $user, ...$exercises);
         $program->removeExercise($removedExercise);
         $remainingExercises = $program->getExercises();
         $this->assertEquals([$beforeExercise,$afterExercise], $program->getExercises());
     }
 
     // TODO - add test for user_id
+
 
     // TODO - empty exercise list when creating a program?
 }

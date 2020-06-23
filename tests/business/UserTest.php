@@ -15,18 +15,19 @@ final class UserTest extends TestCase
         );
     }
 
-    public function testAddProgramToUserAndGetItBack(): void
-    {
-        $exercises = [
-            Exercise::fromString("exercise1"),
-            Exercise::fromString("exercise2")
-        ];
-        $program = Program::create("programname", ...$exercises);
-        $user = User::fromName('newuser');
-        $user->addProgram($program);
-        $userPrograms = $user->getPrograms();
-        $this->assertEquals($program, $userPrograms[0]);
-    }
+// TODO - lists of programs should be PROGRAM's responsibility
+    // public function testAddProgramToUserAndGetItBack(): void
+    // {
+    //     $exercises = [
+    //         Exercise::fromString("exercise1"),
+    //         Exercise::fromString("exercise2")
+    //     ];
+    //     $program = Program::create("programname", ...$exercises);
+    //     $user = User::fromName('newuser');
+    //     $user->addProgram($program);
+    //     $userPrograms = $user->getPrograms();
+    //     $this->assertEquals($program, $userPrograms[0]);
+    // }
 
     public function testGetName(): void
     {

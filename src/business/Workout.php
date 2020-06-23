@@ -16,9 +16,10 @@ final class Workout
     {
         return new self($program);
     }
-    public static function fromExercises(Exercise ...$exercises): Workout
+    // TODO - rename???
+    public static function fromExercises(User $user, Exercise ...$exercises): Workout
     {
-        return new self(Program::create(Workout::DEFAULT_NAME, ...$exercises));
+        return new self(Program::create(Workout::DEFAULT_NAME, $user, ...$exercises));
     }
     public function getName(): string
     {

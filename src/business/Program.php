@@ -5,17 +5,19 @@ namespace App\Business;
 final class Program
 {
     private $name;
+    private $user;
     private $exercises;
 //    private $workouts;
-    private function __construct(string $name, Exercise ...$exercises)
+    private function __construct(string $name, User $user, Exercise ...$exercises)
     {
         $this->name = $name;
+        $this->user = $user;
         $this->exercises = $exercises;
 //        $this->workouts = [];
     }
-    public static function create(string $name, Exercise ...$exercises): Program
+    public static function create(string $name, User $user, Exercise ...$exercises): Program
     {
-        return new self($name, ...$exercises);
+        return new self($name, $user, ...$exercises);
     }
     public function getExercises(): array
     {

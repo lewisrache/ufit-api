@@ -4,12 +4,17 @@ namespace App\Tests\Business;
 use PHPUnit\Framework\TestCase;
 use App\Business\Exercise;
 use App\Business\Program;
+use App\Business\User;
 use App\Business\Workout;
 final class WorkoutTest extends TestCase
 {
     public function testCreateWorkoutFromProgram(): void
     {
-        $program = Program::create('programname', ...[Exercise::fromString('exercisename')]);
+        $program = Program::create(
+            'programname',
+            User::fromName("newuser"),
+            ...[Exercise::fromString('exercisename')]
+        );
         $this->assertInstanceOf(
             Workout::class,
             Workout::fromProgram($program)
@@ -18,7 +23,11 @@ final class WorkoutTest extends TestCase
 
     public function testWorkoutNameSameAsProgram(): void
     {
-        $program = Program::create('programname', ...[Exercise::fromString('exercisename')]);
+        $program = Program::create(
+            'programname',
+            User::fromName("newuser"),
+            ...[Exercise::fromString('exercisename')]
+        );
         $workout = Workout::fromProgram($program);
         $this->assertEquals($program->getName(), $workout->getName());
     }
@@ -27,6 +36,7 @@ final class WorkoutTest extends TestCase
     {
         $program = Program::create(
             'programname',
+            User::fromName("newuser"),
             ...[
                 Exercise::fromString('exercisename1'),
                 Exercise::fromString('exercisename2'),
@@ -51,9 +61,10 @@ final class WorkoutTest extends TestCase
             Exercise::fromString('exercisename1'),
             Exercise::fromString('exercisename2'),
         ];
+        $user = User::fromName("newuser");
         $this->assertInstanceOf(
             Workout::class,
-            Workout::fromExercises(...$exercises)
+            Workout::fromExercises($user, ...$exercises)
         );
     }
 
@@ -61,6 +72,7 @@ final class WorkoutTest extends TestCase
     {
         $program = Program::create(
             'programname',
+            User::fromName("newuser"),
             ...[
                 Exercise::fromString('exercisename1'),
                 Exercise::fromString('exercisename2'),
@@ -82,6 +94,7 @@ final class WorkoutTest extends TestCase
         ];
         $program = Program::create(
             'programname',
+            User::fromName("newuser"),
             ...$programExercises
         );
         $workout = Workout::fromProgram($program);
@@ -102,6 +115,7 @@ final class WorkoutTest extends TestCase
         ];
         $program = Program::create(
             'programname',
+            User::fromName("newuser"),
             ...$programExercises
         );
         $workout = Workout::fromProgram($program);
