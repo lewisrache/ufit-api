@@ -1,6 +1,10 @@
 <?php declare(strict_types=1);
-use PHPUnit\Framework\TestCase;
+namespace App\Tests\Business;
 
+use PHPUnit\Framework\TestCase;
+use App\Business\Exercise;
+use App\Business\Program;
+use App\Business\Workout;
 final class WorkoutTest extends TestCase
 {
     public function testCreateWorkoutFromProgram(): void

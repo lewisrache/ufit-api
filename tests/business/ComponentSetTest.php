@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
-use PHPUnit\Framework\TestCase;
+namespace App\Tests\Business;
 
+use PHPUnit\Framework\TestCase;
+use App\Business\ComponentSet;
 final class ComponentSetTest extends TestCase
 {
     public function testCreateSetWithWeightAndReps(): void

@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace App\Business;
+
 final class User
 {
     private $name;

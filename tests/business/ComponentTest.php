@@ -1,6 +1,10 @@
 <?php declare(strict_types=1);
-use PHPUnit\Framework\TestCase;
+namespace App\Tests\Business;
 
+use PHPUnit\Framework\TestCase;
+use App\Business\Component;
+use App\Business\ComponentSet;
+use App\Business\Exercise;
 final class ComponentTest extends TestCase
 {
     public function testCanCreateFromExercise(): void

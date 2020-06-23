@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace App\Business;
+
 final class Workout
 {
     private $program;
