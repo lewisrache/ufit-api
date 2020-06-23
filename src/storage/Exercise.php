@@ -9,6 +9,7 @@ final class Exercise
         $database->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
         return $database;
     }
+
     public static function insert(\App\Business\Exercise $exercise): int
     {
         $database = self::createDB();
@@ -22,7 +23,7 @@ final class Exercise
         return (int) $result;
     }
 
-    public static function fetchById(int $id): \App\Business\Exercise
+    public static function fetchById(int $id): ?\App\Business\Exercise
     {
         $database = self::createDB();
 
@@ -32,6 +33,9 @@ final class Exercise
         $stmt = $database->prepare($sql);
         $stmt->execute($data);
         $result = $stmt->fetchAll();
+        if (!isset($result[0])) {
+            return null;
+        }
 
         return \App\Business\Exercise::fromString($result[0]['name']);
     }

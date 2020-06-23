@@ -43,4 +43,11 @@ final class ExerciseTest extends TestCase
         );
         $this->assertEquals($name, $actualExercise->getName());
     }
+
+    public function testFetchNonExistantExercise(): void
+    {
+        $nonexistantId = 99999;
+        $exercise = Exercise::fetchById($nonexistantId);
+        $this->assertNull($exercise);
+    }
 }
