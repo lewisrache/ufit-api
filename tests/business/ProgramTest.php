@@ -40,7 +40,7 @@ final class ProgramTest extends TestCase
         $program = Program::create($expectedName, ...$exercises);
         $this->assertEquals($expectedName, $program->getName());
     }
-
+/* THESE SHOULD BE REMOVED BECAUSE THEY SHOULD BE WITH WORKOUTS
     public function testProgramSpawnWorkout(): void
     {
         $exercises = [
@@ -76,7 +76,7 @@ final class ProgramTest extends TestCase
         ];
         $this->assertEquals($expectedWorkouts, $program->getWorkoutList());
     }
-
+*/
     public function testAddExerciseToExistingProgram(): void
     {
         $exercises = [
@@ -106,4 +106,8 @@ final class ProgramTest extends TestCase
         $remainingExercises = $program->getExercises();
         $this->assertEquals([$beforeExercise,$afterExercise], $program->getExercises());
     }
+
+    // TODO - add test for user_id
+
+    // TODO - empty exercise list when creating a program?
 }

@@ -3,26 +3,8 @@ namespace App\Tests\Storage;
 
 use PHPUnit\Framework\TestCase;
 use App\Storage\User;
-final class UserTest extends TestCase
+final class UserTest extends WorkoutAppBaseTestCase
 {
-    private static $database;
-    private static $dbPath = '/tmp/testdb.db';
-    public static function setUpBeforeClass(): void
-    {
-        self::$database = new \PDO('sqlite:'.self::$dbPath);
-        self::$database->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
-
-        $schema = "CREATE TABLE users(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name
-                );";
-        self::$database->prepare($schema)->execute();
-    }
-    public static function tearDownAfterClass(): void
-    {
-        unlink(self::$dbPath);
-    }
-
     public function testCreateNewUserAndInsert(): void
     {
         $user = \App\Business\User::fromName("dbtest");

@@ -6,12 +6,12 @@ final class Program
 {
     private $name;
     private $exercises;
-    private $workouts;
+//    private $workouts;
     private function __construct(string $name, Exercise ...$exercises)
     {
         $this->name = $name;
         $this->exercises = $exercises;
-        $this->workouts = [];
+//        $this->workouts = [];
     }
     public static function create(string $name, Exercise ...$exercises): Program
     {
@@ -25,16 +25,18 @@ final class Program
     {
         return $this->name;
     }
-    public function spawnWorkout(): Workout
-    {
-        $workout = Workout::fromProgram($this);
-        $this->workouts[] = $workout;
-        return $workout;
-    }
-    public function getWorkoutList(): array
-    {
-        return $this->workouts;
-    }
+    /*REMOVE WORKOUTS FROM THE PROGRAM*/
+    // public function spawnWorkout(): Workout
+    // {
+    //     $workout = Workout::fromProgram($this);
+    //     $this->workouts[] = $workout;
+    //     return $workout;
+    // }
+    // public function getWorkoutList(): array
+    // {
+    //     return $this->workouts;
+    // }
+    /*REMOVE WORKOUTS FROM THE PROGRAM*/
     public function addExercise(Exercise $exercise): void
     {
         $this->exercises[] = $exercise;
