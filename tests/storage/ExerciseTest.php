@@ -30,4 +30,17 @@ final class ExerciseTest extends TestCase
         $this->assertIsInt($id);
         $this->assertGreaterThan(0, $id);
     }
+
+    public function testGetExerciseFromStorage(): void
+    {
+        $name = "dbtest";
+        $expectedExercise = \App\Business\Exercise::fromString($name);
+        $id = Exercise::insert($exercise);
+        $actualExercise = Exercise::fetchById($id);
+        $this->assertInstanceOf(
+            \App\Business\Exercise::class,
+            $actualExercise
+        );
+        $this->assertEquals($name, $actualExercise->getName());
+    }
 }
