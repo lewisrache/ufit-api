@@ -35,7 +35,7 @@ final class ExerciseTest extends TestCase
     {
         $name = "dbtest";
         $expectedExercise = \App\Business\Exercise::fromString($name);
-        $id = Exercise::insert($exercise);
+        $id = Exercise::insert($expectedExercise);
         $actualExercise = Exercise::fetchById($id);
         $this->assertInstanceOf(
             \App\Business\Exercise::class,

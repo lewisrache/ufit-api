@@ -16,4 +16,19 @@ final class Exercise
         $result = $database->lastInsertId();
         return (int) $result;
     }
+
+    public static function fetchById(int $id): \App\Business\Exercise
+    {
+        $database = new \PDO('sqlite:/tmp/testdb.db');
+        $database->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
+
+        $sql = "SELECT name FROM exercises WHERE id = :id";
+        $data = [':id' => $id];
+
+        $stmt = $database->prepare($sql);
+        $stmt->execute($data);
+        $result = $stmt->fetchAll();
+
+        return \App\Business\Exercise::fromString($result[0]['name']);
+    }
 }
