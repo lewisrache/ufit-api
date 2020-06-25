@@ -17,20 +17,23 @@ final class Program extends Base
     }
 
 
-    // public static function fetchById(int $id): ?\App\Business\User
-    // {
-    //     $database = self::createDB();
-    //
-    //     $sql = "SELECT name FROM users WHERE id = :id";
-    //     $data = [':id' => $id];
-    //
-    //     $stmt = $database->prepare($sql);
-    //     $stmt->execute($data);
-    //     $result = $stmt->fetchAll();
-    //     if (!isset($result[0])) {
-    //         return null;
-    //     }
-    //
-    //     return \App\Business\User::fromName($result[0]['name']);
-    // }
+    public static function fetchById(int $id): ?\App\Business\Program
+    {
+        $database = self::createDB();
+
+        $sql = "SELECT id, name, user_id FROM programs WHERE id = :id";
+        $data = [':id' => $id];
+
+        $stmt = $database->prepare($sql);
+        $stmt->execute($data);
+        $result = $stmt->fetchAll();
+        if (!isset($result[0])) {
+            return null;
+        }
+
+        $user = User::fetchById((int)$result[0]['user_id']);
+        $program = \App\Business\Program::create($result[0]['name'], $user, ...[]);
+        $program->setId($id);
+        return $program;
+    }
 }

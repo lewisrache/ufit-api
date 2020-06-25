@@ -24,6 +24,7 @@ final class UserTest extends WorkoutAppBaseTestCase
             $actualUser
         );
         $this->assertEquals($name, $actualUser->getName());
+        $this->assertEquals($id, $actualUser->getId());
     }
 
     public function testFetchNonExistantUser(): void

@@ -128,5 +128,29 @@ final class ProgramTest extends TestCase
         );
     }
 
+    public function testSetAndGetProgramId(): void
+    {
+        $exercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $user = User::fromName("newuser");
+        $program = Program::create("programname", $user, ...$exercises);
+        $id = 1;
+        $program->setId($id);
+        $this->assertEquals($id, $program->getId());
+    }
+
+    public function testGetIdBeforeSet(): void
+    {
+        $exercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $user = User::fromName("newuser");
+        $program = Program::create("programname", $user, ...$exercises);
+        $this->assertNull($program->getId());
+    }
+
     // TODO - empty exercise list when creating a program?
 }

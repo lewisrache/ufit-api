@@ -7,6 +7,7 @@ final class Program
     private $name;
     private $user;
     private $exercises;
+    private $id = null;
 //    private $workouts;
     private function __construct(string $name, User $user, Exercise ...$exercises)
     {
@@ -57,5 +58,15 @@ final class Program
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }

@@ -20,7 +20,7 @@ final class User extends Base
     {
         $database = self::createDB();
 
-        $sql = "SELECT name FROM users WHERE id = :id";
+        $sql = "SELECT id, name FROM users WHERE id = :id";
         $data = [':id' => $id];
 
         $stmt = $database->prepare($sql);
@@ -30,6 +30,8 @@ final class User extends Base
             return null;
         }
 
-        return \App\Business\User::fromName($result[0]['name']);
+        $user = \App\Business\User::fromName($result[0]['name']);
+        $user->setId($id);
+        return $user;
     }
 }
