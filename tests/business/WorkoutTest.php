@@ -137,4 +137,28 @@ final class WorkoutTest extends TestCase
         // ensure removing from the workout doesn't change the program
         $this->assertEquals($programExercises, $program->getExercises());
     }
+
+    public function testSetAndGetWorkoutId(): void
+    {
+        $exercises = [
+            Exercise::fromString('exercisename1'),
+            Exercise::fromString('exercisename2'),
+        ];
+        $user = User::fromName("newuser");
+        $workout = Workout::fromExercises($user, ...$exercises);
+        $id = 1;
+        $workout->setId($id);
+        $this->assertEquals($id, $workout->getId());
+    }
+
+    public function testGetIdBeforeSet(): void
+    {
+        $exercises = [
+            Exercise::fromString('exercisename1'),
+            Exercise::fromString('exercisename2'),
+        ];
+        $user = User::fromName("newuser");
+        $workout = Workout::fromExercises($user, ...$exercises);
+        $this->assertNull($workout->getId());
+    }
 }

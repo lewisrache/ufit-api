@@ -6,6 +6,7 @@ final class ComponentSet
 {
     private $weight;
     private $reps;
+    private $id = null;
     private function __construct(float $weight, int $reps)
     {
         $this->weight = $weight;
@@ -15,5 +16,14 @@ final class ComponentSet
     public static function create(float $weight, int $reps): ComponentSet
     {
         return new self($weight, $reps);
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }

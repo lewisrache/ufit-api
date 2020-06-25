@@ -14,4 +14,18 @@ final class ComponentSetTest extends TestCase
             ComponentSet::create($weight, $reps)
         );
     }
+
+    public function testSetAndGetComponentId(): void
+    {
+        $set = ComponentSet::create(150, 15);
+        $id = 1;
+        $set->setId($id);
+        $this->assertEquals($id, $set->getId());
+    }
+
+    public function testGetIdBeforeSet(): void
+    {
+        $set = ComponentSet::create(150, 15);
+        $this->assertNull($set->getId());
+    }
 }

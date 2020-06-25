@@ -37,4 +37,18 @@ final class ComponentTest extends TestCase
         $this->assertNotEmpty($setList);
         $this->assertEquals($componentSet, $setList[0]);
     }
+
+    public function testSetAndGetComponentId(): void
+    {
+        $component = Component::fromExercise(Exercise::fromString("bogus"));
+        $id = 1;
+        $component->setId($id);
+        $this->assertEquals($id, $component->getId());
+    }
+
+    public function testGetIdBeforeSet(): void
+    {
+        $component = Component::fromExercise(Exercise::fromString("bogus"));
+        $this->assertNull($component->getId());
+    }
 }
