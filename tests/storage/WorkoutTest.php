@@ -40,7 +40,7 @@ final class WorkoutTest extends WorkoutAppBaseTestCase
             \App\Business\Workout::class,
             $actualWorkout
         );
-        $this->assertEquals($name, $actualWorkout->getProgram()->getName()); // TODO - Workout->getName() should be a thing and should return program->getName()
+        $this->assertEquals($name, $actualWorkout->getName());
         $this->assertEquals($id, $actualWorkout->getId());
         $actualDate = $actualWorkout->getDate();
         $this->assertInstanceOf(\DateTime::class, $actualDate);
