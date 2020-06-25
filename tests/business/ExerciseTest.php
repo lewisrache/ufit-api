@@ -19,4 +19,19 @@ final class ExerciseTest extends TestCase
         $exercise = Exercise::fromString($exerciseName);
         $this->assertEquals($exerciseName, $exercise->getName());
     }
+
+    public function testSetIdAndGetIdBack(): void
+    {
+        $exerciseName = "dumbexercise";
+        $exercise = Exercise::fromString($exerciseName);
+        $id = 1;
+        $exercise->setId($id);
+        $this->assertEquals($id, $exercise->getId());
+    }
+
+    public function testGetIdBeforeSet(): void
+    {
+        $exercise = Exercise::fromString('new');
+        $this->assertNull($exercise->getId());
+    }
 }

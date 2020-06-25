@@ -3,6 +3,7 @@ namespace App\Tests\Storage;
 
 use PHPUnit\Framework\TestCase;
 use App\Storage\Program;
+use App\Storage\User;
 final class ProgramTest extends WorkoutAppBaseTestCase
 {
     public function testCreateNewProgramAndInsert(): void
@@ -17,20 +18,27 @@ final class ProgramTest extends WorkoutAppBaseTestCase
         $this->assertIsInt($id);
         $this->assertGreaterThan(0, $id);
     }
-    //
-    // public function testGetUserFromStorage(): void
+
+    // NOTE: not verifying exercises in this test
+    // public function testGetProgramFromStorage(): void
     // {
     //     $name = "dbtest";
-    //     $expectedUser = \App\Business\User::fromName($name);
-    //     $id = User::insert($expectedUser);
-    //     $actualUser = User::fetchById($id);
+    //     $user = \App\Business\User::fromName('newuser');
+    //     $userId = User::insert($user);
+    //     $user->setId($userId);
+    //     $exercise = Exercise::fromName('newexercise');
+    //     $expectedProgram = \App\Business\Program::create($name, $user, ...[$exercise]);
+    //     $id = Program::insert($expectedProgram);
+    //     $actualProgram = Program::fetchById($id);
     //     $this->assertInstanceOf(
-    //         \App\Business\User::class,
-    //         $actualUser
+    //         \App\Business\Program::class,
+    //         $actualProgram
     //     );
-    //     $this->assertEquals($name, $actualUser->getName());
+    //     $this->assertEquals($name, $actualProgram->getName());
+    //     $this->assertEquals($user->getName(), $actualProgram->getUser()->getName());
+    //     $this->assertEquals($user->getId(), $actualProgram->getUser()->getId());
     // }
-    //
+
     // public function testFetchNonExistantUser(): void
     // {
     //     $nonexistantId = 99999;
