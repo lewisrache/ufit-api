@@ -161,4 +161,39 @@ final class WorkoutTest extends TestCase
         $workout = Workout::fromExercises($user, ...$exercises);
         $this->assertNull($workout->getId());
     }
+
+    public function testGetProgram(): void
+    {
+        $program = Program::create(
+            'programname',
+            User::fromName("newuser"),
+            ...[Exercise::fromString('exercisename')]
+        );
+        $workout = Workout::fromProgram($program);
+        $this->assertEquals($program, $workout->getProgram());
+    }
+
+    public function testSetAndGetDate(): void
+    {
+        $program = Program::create(
+            'programname',
+            User::fromName("newuser"),
+            ...[Exercise::fromString('exercisename')]
+        );
+        $workout = Workout::fromProgram($program);
+        $date = \DateTime::createFromFormat("Y-m-d H:i:s",date("Y-m-d H:i:s"));
+        $workout->setDate($date);
+        $this->assertEquals($date, $workout->getDate());
+    }
+
+    public function testGetDateBeforeSet(): void
+    {
+        $exercises = [
+            Exercise::fromString('exercisename1'),
+            Exercise::fromString('exercisename2'),
+        ];
+        $user = User::fromName("newuser");
+        $workout = Workout::fromExercises($user, ...$exercises);
+        $this->assertNull($workout->getDate());
+    }
 }

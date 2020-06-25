@@ -7,6 +7,7 @@ final class Workout
     private $program;
     private $components;
     private $id = null;
+    private $date = null;
     public const DEFAULT_NAME = "quick workout";
     private function __construct($program)
     {
@@ -51,6 +52,18 @@ final class Workout
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function getProgram(): Program
+    {
+        return $this->program;
+    }
+    public function setDate(\DateTime $date): void
+    {
+        $this->date = $date;
+    }
+    public function getDate(): ?\DateTime
+    {
+        return $this->date;
     }
 
     private function cloneExercises(Exercise ...$exercises): array

@@ -7,6 +7,7 @@ use App\Storage\Program;
 use App\Storage\User;
 final class ProgramTest extends WorkoutAppBaseTestCase
 {
+    // TODO - this feels like it's missing something; doesn't test that we saved the user?? is that important?
     public function testCreateNewProgramAndInsert(): void
     {
         $expectedExercises = [

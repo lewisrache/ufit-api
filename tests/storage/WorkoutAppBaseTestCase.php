@@ -28,6 +28,13 @@ class WorkoutAppBaseTestCase extends TestCase
                     FOREIGN KEY(user_id) REFERENCES users(id)
                 );";
         self::$database->prepare($schema)->execute();
+        $schema = "CREATE TABLE workouts(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    program_id INTEGER,
+                    date TEXT DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY(program_id) REFERENCES programs(id)
+                );";
+        self::$database->prepare($schema)->execute();
     }
 
     public static function setUpBeforeClass(): void
