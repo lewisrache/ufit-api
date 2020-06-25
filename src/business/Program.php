@@ -53,4 +53,9 @@ final class Program
         // we want the keys to always be sequential
         $this->exercises = array_values($this->exercises);
     }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
 }

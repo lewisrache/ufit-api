@@ -6,6 +6,7 @@ final class User
 {
     private $name;
     private $programs;
+    private $id = null;
     private function __construct($name)
     {
         $this->name = $name;
@@ -29,5 +30,15 @@ final class User
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }

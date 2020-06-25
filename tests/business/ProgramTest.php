@@ -114,7 +114,19 @@ final class ProgramTest extends TestCase
     }
 
     // TODO - add test for user_id
-
+    public function testGetUserFromProgram(): void
+    {
+        $exercises = [
+            Exercise::fromString("exercise1"),
+            Exercise::fromString("exercise2")
+        ];
+        $user = User::fromName("newuser");
+        $program = Program::create("programname", $user, ...$exercises);
+        $this->assertInstanceOf(
+            User::class,
+            $program->getUser()
+        );
+    }
 
     // TODO - empty exercise list when creating a program?
 }

@@ -3,18 +3,19 @@ namespace App\Storage;
 
 final class Program extends Base
 {
-    // public static function insert(\App\Business\Program $program): int
-    // {
-    //     $database = self::createDB();
-    //
-    //     $sql = "INSERT INTO programs (name, user_id) VALUES (:name)";
-    //     $data = [':name' => $user->getName()];
-    //
-    //     $stmt = $database->prepare($sql);
-    //     $stmt->execute($data);
-    //     $result = $database->lastInsertId();
-    //     return (int) $result;
-    // }
+    public static function insert(\App\Business\Program $program): int
+    {
+        $database = self::createDB();
+
+        $sql = "INSERT INTO programs (name, user_id) VALUES (:name, :user_id)";
+        $data = [':name' => $program->getName(), ':user_id' => $program->getUser()->getId()];
+
+        $stmt = $database->prepare($sql);
+        $stmt->execute($data);
+        $result = $database->lastInsertId();
+        return (int) $result;
+    }
+
 
     // public static function fetchById(int $id): ?\App\Business\User
     // {

@@ -5,17 +5,18 @@ use PHPUnit\Framework\TestCase;
 use App\Storage\Program;
 final class ProgramTest extends WorkoutAppBaseTestCase
 {
-    // public function testCreateNewProgramAndInsert(): void
-    // {
-    //     $expectedExercises = [
-    //         \App\Business\Exercise::fromString("exercise1"),
-    //         \App\Business\Exercise::fromString("exercise2")
-    //     ];
-    //     $program = \App\Business\Program::create("programname", ...$expectedExercises);
-    //     $id = Program::insert($program);
-    //     $this->assertIsInt($id);
-    //     $this->assertGreaterThan(0, $id);
-    // }
+    public function testCreateNewProgramAndInsert(): void
+    {
+        $expectedExercises = [
+            \App\Business\Exercise::fromString("exercise1"),
+            \App\Business\Exercise::fromString("exercise2")
+        ];
+        $user = \App\Business\User::fromName("newuser");
+        $program = \App\Business\Program::create("programname", $user, ...$expectedExercises);
+        $id = Program::insert($program);
+        $this->assertIsInt($id);
+        $this->assertGreaterThan(0, $id);
+    }
     //
     // public function testGetUserFromStorage(): void
     // {

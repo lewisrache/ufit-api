@@ -15,6 +15,20 @@ final class UserTest extends TestCase
         );
     }
 
+    public function testSetAndGetUserId(): void
+    {
+        $user = User::fromName('newuser');
+        $id = 1;
+        $user->setId($id);
+        $this->assertEquals($id, $user->getId());
+    }
+
+    public function testGetIdBeforeSet(): void
+    {
+        $user = User::fromName('newuser');
+        $this->assertNull($user->getId());
+    }
+
 // TODO - lists of programs should be PROGRAM's responsibility
     // public function testAddProgramToUserAndGetItBack(): void
     // {
