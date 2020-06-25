@@ -22,8 +22,8 @@ final class WorkoutTest extends WorkoutAppBaseTestCase
         $this->assertGreaterThan(0, $id);
     }
 
-    // NOTE: not verifying exercises in this test
-    public function testGetProgramFromStorage(): void
+    // NOTE: not verifying components in this test
+    public function testGetWorkoutFromStorage(): void
     {
         $name = "dbtest";
         $user = \App\Business\User::fromName('newuser');
@@ -47,11 +47,11 @@ final class WorkoutTest extends WorkoutAppBaseTestCase
         $this->assertEquals(date('Y-m-d'), $actualDate->format('Y-m-d'));
         $this->assertEquals($userId, $actualWorkout->getProgram()->getUser()->getId());
     }
-    //
-    // public function testFetchNonExistantProgram(): void
-    // {
-    //     $nonexistantId = 99999;
-    //     $program = Program::fetchById($nonexistantId);
-    //     $this->assertNull($program);
-    // }
+
+    public function testFetchNonExistantWorkout(): void
+    {
+        $nonexistantId = 99999;
+        $workout = Workout::fetchById($nonexistantId);
+        $this->assertNull($workout);
+    }
 }
