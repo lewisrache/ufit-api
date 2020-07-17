@@ -30,7 +30,7 @@ final class ComponentSetTest extends WorkoutAppBaseTestCase
     }
 
     // we are not testing how the components come to be, only how they get into the database
-    public function testCreateNewComponentAndInsert(): void
+    public function testCreateNewComponentSetAndInsert(): void
     {
         $set = \App\Business\ComponentSet::create(150, 15, $this->component);
         $id = ComponentSet::insert($set);
@@ -38,23 +38,26 @@ final class ComponentSetTest extends WorkoutAppBaseTestCase
         $this->assertGreaterThan(0, $id);
     }
 
-    // public function testGetComponentFromStorage(): void
-    // {
-    //     $expectedComponent = $this->component;
-    //     $id = Component::insert($expectedComponent);
-    //     $actualComponent = Component::fetchById($id);
-    //     $this->assertInstanceOf(
-    //         \App\Business\Component::class,
-    //         $actualComponent
-    //     );
-    //     $this->assertEquals($this->exercise->getId(), $actualComponent->getExercise()->getId());
-    //     $this->assertEquals($this->workout->getId(), $actualComponent->getWorkout()->getId());
-    // }
-    //
-    // public function testFetchNonExistantComponent(): void
-    // {
-    //     $nonexistantId = 99999;
-    //     $component = Component::fetchById($nonexistantId);
-    //     $this->assertNull($component);
-    // }
+    public function testGetComponentSetFromStorage(): void
+    {
+        $weight = 150;
+        $reps = 15;
+        $expectedSet = \App\Business\ComponentSet::create($weight, $reps, $this->component);
+        $id = ComponentSet::insert($expectedSet);
+        $actualSet = ComponentSet::fetchById($id);
+        $this->assertInstanceOf(
+            \App\Business\ComponentSet::class,
+            $actualSet
+        );
+        $this->assertEquals($this->component->getId(), $actualSet->getComponent()->getId());
+        $this->assertEquals($weight, $actualSet->getWeight());
+        $this->assertEquals($reps, $actualSet->getReps());
+    }
+
+    public function testFetchNonExistantComponentSet(): void
+    {
+        $nonexistantId = 99999;
+        $component = ComponentSet::fetchById($nonexistantId);
+        $this->assertNull($component);
+    }
 }
