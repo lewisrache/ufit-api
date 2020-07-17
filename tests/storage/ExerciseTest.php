@@ -24,6 +24,7 @@ final class ExerciseTest extends WorkoutAppBaseTestCase
             $actualExercise
         );
         $this->assertEquals($name, $actualExercise->getName());
+        $this->assertEquals($id, $actualExercise->getId());
     }
 
     public function testFetchNonExistantExercise(): void

@@ -76,6 +76,6 @@ final class Workout
     }
     private function cloneExercise(Exercise $exercise): Component
     {
-        return Component::fromExercise($exercise);
+        return Component::create($exercise, $this);
     }
 }

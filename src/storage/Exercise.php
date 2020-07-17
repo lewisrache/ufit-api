@@ -30,6 +30,8 @@ final class Exercise extends Base
             return null;
         }
 
-        return \App\Business\Exercise::fromString($result[0]['name']);
+        $exercise = \App\Business\Exercise::fromString($result[0]['name']);
+        $exercise->setId($id);
+        return $exercise;
     }
 }

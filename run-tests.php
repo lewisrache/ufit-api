@@ -1,2 +1,2 @@
 <?php
-echo shell_exec('./vendor/bin/phpunit tests 2>&1');
+echo shell_exec('./vendor/bin/phpunit tests --exclude-group wip 2>&1');
