@@ -11,9 +11,11 @@
             "App\\": "src/",
             "App\\Business\\": "src/business",
             "App\\Storage\\": "src/storage",
+            "App\\Controller\\": "src/controller",
             "App\\Tests\\": "tests/",
             "App\\Tests\\Business\\": "tests/business",
-            "App\\Tests\\Storage\\": "tests/storage"
+            "App\\Tests\\Storage\\": "tests/storage",
+            "App\\Tests\\Controller\\": "tests/controller"
         }
     },
     "require-dev": {
