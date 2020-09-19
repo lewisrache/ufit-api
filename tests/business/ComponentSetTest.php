@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace App\Tests\Business;
 
-use PHPUnit\Framework\TestCase;
 use App\Business\ComponentSet;
 final class ComponentSetTest extends BaseTestCase
 {
